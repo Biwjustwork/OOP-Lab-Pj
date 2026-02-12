@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 
 public class Book {
+    protected String bookId;
     protected String title;
     protected String author;
     protected String isbn;
@@ -11,7 +12,8 @@ public class Book {
     protected String borrow;
     protected LocalDate returnDueDate;
 
-    public Book (String title, String author, String isbn,double price, String borrow ){
+    public Book (String bookId,String title, String author, String isbn,double price, String borrow ){
+        this.bookId = bookId;
         this.title = title;
         this.author = author;
         this.isbn = isbn;
@@ -59,8 +61,16 @@ public class Book {
         this.borrow = borrow;
     }
 
+    public String getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
+    }
 
     public void displayDetails(){
+        System.out.println("- BookID: "+ bookId);
         System.out.println("- Title: "+ title);
         System.out.println("- Author: "+ author);
         System.out.println("- ISBN: "+ isbn);
@@ -75,29 +85,33 @@ public class Book {
     }
 
     public void checkOut(Member member){
-        if (borrow.equalsIgnoreCase("Available")){
-            System.out.println("Book ["+title+"] has been borrowed by ["+ member.getMemberName()+"]");
+        if (!borrow.equalsIgnoreCase("Available")) {
+            System.out.println("Error: BookID '"+bookId+"' Book '" + title + "' is already borrowed.");
+            System.out.println();
+            return;
+        }
+        if (member.tryBorrowed()){
+            System.out.println("Book ["+title+"] BookID ["+bookId+"]  has been borrowed by ["+ member.getMemberName()+"]");
             this.returnDueDate = LocalDate.now().plusDays(14);
             this.borrow = "Borrowed";
             System.out.println("Return Due Date: "+ returnDueDate);
         } else {
-            System.out.println("Error: Book '"+title+"' is already borrowed and cannot be checked out again.");
+            System.out.println("Member '"+member.getMemberName()+"' has reached the borrow limit (3).");
+            System.out.println("Borrow request denied for member "+member.getMemberName()+".");
         }
-        System.out.println();
-
     }
 
     public void returnBook(){
         if (borrow.equalsIgnoreCase("Borrowed")){
             this.borrow = "Available";
-            System.out.println("Book '"+title+"' has been returned successfully.");
+            System.out.println("Book '"+title+"' BookID '"+bookId+"'  has been returned successfully.");
         } else {
-            System.out.println("Error: Book '"+title+"' is not borrowed yet and cannot be return book again.");
+            System.out.println("Error: Book '"+title+"' BookID '"+bookId+"' is not borrowed yet and cannot be return book again.");
         }
         System.out.println();
     }
 
     public void printSummary(){
-        System.out.println("Book [Title='"+getTitle()+"' , Status='"+getBorrow()+"']" );
+        System.out.println("BookID ["+bookId+"] , Book [Title='"+title+"' , Status='"+borrow+"']" );
     }
 }

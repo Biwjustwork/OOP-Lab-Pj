@@ -11,9 +11,9 @@ class LibraryManagementApp {
         // Instantiate two book objects based on the provided raw data
         List<Book> books = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            books.add(new Book("Java Programming", "John Smith", "123-456", 450.0,
+            books.add(new Book("B"+(i+1),"Java Programming", "John Smith", "123-456", 450.0,
                     "Available"));
-            books.add(new Book("OP Concepts", "Will Jones", "999-888", 590.0,
+            books.add(new Book("B"+(i+1),"OP Concepts", "Will Jones", "999-888", 590.0,
                     "Borrowed"));
         }
 
@@ -32,6 +32,23 @@ class LibraryManagementApp {
         books.get(1).checkOut(member1);
 
         System.out.println("\nAttempting to checkout Book 2 again (Already Borrowed):");
-        books.get(1).checkOut(member1);
+        books.get(0).checkOut(member1);
+
+        // Demonstrate returnBook() method
+        System.out.println("\n--- Testing returnBook() Method ---");
+        System.out.println("\nReturning Book 1:");
+        books.get(0).returnBook();
+
+        // Challenging Scenario: Attempt to borrow more than allowed limit
+        System.out.println("\n--- Challenging Scenario: Borrowing Limit ---");
+        books.get(0).checkOut(member1);
+        books.get(2).checkOut(member1);
+        books.get(4).checkOut(member1); // This should be denied
+
+        // Display final details
+        System.out.println("\n--- Final Book Information ---");
+        for (Book book : books) {
+            book.printSummary();
+        }
     }
 }

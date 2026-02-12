@@ -1,10 +1,10 @@
-package com.rpg.lab01;
+package com.rpg.lab02;
 
-public class Healer extends Character{
+public class Healer extends Character {
     private int baseHeal;
 
-    public Healer(String name, int level, int hp, Weapon weapon, int baseHeal) {
-        super(name, level, hp, weapon,"Healer");
+    public Healer(String name, int level, int hp,int damage, int defense, Weapon weapon, int baseHeal) {
+        super(name, level, hp, damage,defense, weapon,"Healer");
         this.baseHeal = baseHeal;
     }
 
@@ -15,6 +15,8 @@ public class Healer extends Character{
         System.out.println(" Class: "+ role );
         System.out.println(" Level: "+ level);
         System.out.println(" Health Points: "+hp+"/"+maxHp);
+        System.out.println(" Damage:"+damage);
+        System.out.println(" Defense"+defense);
         System.out.println(" Weapon: "+weapon.toString());
         System.out.println(" Healing Power: "+(baseHeal + (level * 3)));
         System.out.println();

@@ -1,4 +1,4 @@
-package com.rpg.lab01;
+package com.rpg.lab02;
 
 public class RPGGameApp {
     public static void main(String[] args) {
@@ -13,9 +13,9 @@ public class RPGGameApp {
 
         // ==================== CREATE CHARACTERS ====================
         System.out.println("\n[STEP 2] Creating Characters...");
-        Character warrior = new Character("Arthur", 10, 1500, swordWeapon, "Warrior");
-        Character mage = new Character("Merlin", 12, 800, staffWeapon, "Mage");
-        Healer healer = new Healer("Elara", 9, 1000, staffHealer, 30);
+        Character warrior = new Character("Arthur", 10, 1500, 20, 10, swordWeapon, "Warrior");
+        Character mage = new Character("Merlin", 12, 800, 15, 5, staffWeapon, "Mage");
+        Healer healer = new Healer("Elara", 9, 1000, 10, 8, staffHealer, 30);
 
         // ==================== DISPLAY INITIAL STATUS ====================
         System.out.println("\n[STEP 3] Initial Character Status:");
@@ -26,16 +26,14 @@ public class RPGGameApp {
         // ==================== TEST ATTACK METHOD ====================
         System.out.println("\n[STEP 4] Testing attack() Method:");
         System.out.println("\n--- Warrior's Turn ---");
-        int warriorDamage = warrior.attack();
+        warrior.attack(mage);
         System.out.println("\n--- Mage's Turn ---");
-        int mageDamage = mage.attack();
+        mage.attack(warrior);
 
         // ==================== SIMULATE COMBAT ====================
-        System.out.println("\n[STEP 5] Simulating Combat Scenario:");
-        System.out.println("\n--- Mage takes damage from Warrior ---");
-        mage.takeDamage(warriorDamage);
-        System.out.println("\n--- Warrior takes damage from Mage ---");
-        warrior.takeDamage(mageDamage);
+        System.out.println("\n[STEP 5] Status After Exchanges:");
+        warrior.displayCharacterDetails();
+        mage.displayCharacterDetails();
 
         // ==================== TEST LEVEL UP ====================
         System.out.println("\n[STEP 6] Testing levelUp() Method:");
@@ -49,9 +47,9 @@ public class RPGGameApp {
         System.out.println("\n--- Healer heals themselves ---");
         healer.displayCharacterDetails();
         healer.heal();
-
         System.out.println("\n--- Healer heals the Warrior ---");
         healer.healAlly(warrior);
+
     }
 }
 
