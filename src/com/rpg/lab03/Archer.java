@@ -36,7 +36,7 @@ public class Archer extends Character{
         }
         boolean hitSuccessful = (Math.random()*100) < accuracy;
         if (!hitSuccessful){
-            System.out.println(name+"("+role+") attack missed " +target);
+            System.out.println(name+"("+role+") attack missed " +target.getName());
             return;
         }
 
