@@ -93,12 +93,12 @@ public class CastleGate implements Destructible{
             setDurability(durability- finalDamage);
         } else {
             setDurability(0);
-            System.out.println("\uD83D\uDCA5 "+name+" takes "+finalDamage+" damage! (Durability: "+durability+"/"+maxDurability+")");
-            System.out.println("\uD83C\uDFF0 "+name+" has been BREACHED! The gate COLLAPSES!");
+            System.out.println("\uD83C\uDFF0 "+name+" takes "+finalDamage+" damage! (Durability: "+durability+"/"+maxDurability+")");
+            System.out.println("\uD83D\uDCA5 "+name+" has been BREACHED! The gate COLLAPSES!");
             setStatus("Breached");
             return;
         }
-        System.out.println(" "+name+" takes "+finalDamage+" damage! (Durability: "+durability+"/"+maxDurability+")");
+        System.out.println("\uD83C\uDFF0 "+name+" takes "+finalDamage+" damage! (Durability: "+durability+"/"+maxDurability+")");
     }
 
     @Override

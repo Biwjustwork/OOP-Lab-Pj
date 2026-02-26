@@ -69,12 +69,12 @@ public class StoneWall implements Destructible{
             setDurability(durability- amount);
         } else {
             setDurability(0);
-            System.out.println("\uD83D\uDCA5 "+name+" takes "+amount+" damage! (Durability: "+durability+"/"+maxDurability+")");
-            System.out.println("\uD83E\uDDF1 "+name+" has CRUMBLED to pieces!");
+            System.out.println("\uD83E\uDDF1 "+name+" takes "+amount+" damage! (Durability: "+durability+"/"+maxDurability+")");
+            System.out.println("\uD83D\uDCA5 "+name+" has CRUMBLED to pieces!");
             setStatus("Destroyed");
             return;
         }
-        System.out.println(" "+name+" takes "+amount+" damage! (Durability: "+durability+"/"+maxDurability+")");
+        System.out.println("\uD83E\uDDF1 "+name+" takes "+amount+" damage! (Durability: "+durability+"/"+maxDurability+")");
     }
 
     @Override
