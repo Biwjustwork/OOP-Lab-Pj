@@ -70,7 +70,11 @@ public class Member {
         System.out.println(" ID: "+ memberID);
         System.out.println(" Name: "+memberName);
         System.out.println(" Membership Type: "+ membershipStrategy.getMembershipType());
-        System.out.println(" Membership Borrow Limit: "+ membershipStrategy.getBorrowLimit());
+        if(membershipStrategy.hasUnlimitedBorrowing()){
+            System.out.println(" Borrow Limit: Unlimited");
+        } else {
+            System.out.println(" Borrow Limit: "+ membershipStrategy.getBorrowLimit());
+        }
         System.out.println(" Membership Loan Period Days: "+ membershipStrategy.getLoanPeriodDays());
         System.out.println(" Membership Cost: "+ membershipStrategy.getMembershipCost());
     }
